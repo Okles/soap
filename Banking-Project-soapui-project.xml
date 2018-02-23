@@ -580,4 +580,150 @@ declare namespace ns1='http://thomas-bayer.com/blz/';
 declare namespace ns1='http://thomas-bayer.com/blz/';
 
 //ns1:getBankResponse/ns1:details/ns1:plz
-</con:sourcePath><con:targetType>plz_code</con:targetType><con:targetStep>Properties</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="properties" name="Properties" id="723f04fe-78e1-4be4-a076-cf0810ae896a"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>bic_code</con:name><con:value>GENODEF1SPL</con:value></con:property><con:property><con:name>ort_code</con:name><con:value>Spelle</con:value></con:property><con:property><con:name>plz_code</con:name><con:value>48480</con:value></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties><con:property><con:name>username</con:name><con:value>okles</con:value></con:property><con:property><con:name>password</con:name><con:value>uptheirons</con:value></con:property></con:properties><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</con:sourcePath><con:targetType>plz_code</con:targetType><con:targetStep>Properties</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="properties" name="Properties" id="723f04fe-78e1-4be4-a076-cf0810ae896a"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>bic_code</con:name><con:value>GENODEF1SPL</con:value></con:property><con:property><con:name>ort_code</con:name><con:value>Spelle</con:value></con:property><con:property><con:name>plz_code</con:name><con:value>48480</con:value></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="4f9e831c-813d-4381-b08d-2d79760c36b9" name="TS06_GroovyBasics"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="2685556c-abe3-4f0d-b7ce-a4d3283d5762" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TC01_GroovyStuff" searchProperties="true"><con:settings/><con:testStep type="groovy" name="Groovy Script - Groovy Basics" id="e17721ab-4588-4310-bf2c-eec347d7f012"><con:settings/><con:config><script>//variable declaration
+def name
+String firstNam, llastName, country
+firstName = 'John'
+lastName = 'Doe'
+int age
+double salary
+
+salary = 10000
+age = 25
+country = 'Poland'
+log.info 'First name:  ' +firstName
+log.info 'Last name: ' +lastName
+log.warn 'Age: ' +age
+log.error 'Salary: ' +salary
+log.info "Country:  $country"</script></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script - Conditions" id="c86f9bdd-deda-4e4e-af1a-64c503730fa3"><con:settings/><con:config><script>boolean isPassed
+
+isPassed = true
+
+
+if (isPassed == true)
+{
+	log.info 'Hurraay!!'
+	
+}
+
+else
+{
+log.error 'Oh nooo!'
+	
+}
+
+
+//multiple scenarios
+
+grade = 'B'
+
+if(grade =='A')
+{
+log.info 'You got a car! '
+	
+}
+
+else if (grade =='B')
+{
+log.warn 'You got a bike!'
+
+}
+else
+{
+log.error 'You got nothing!'
+	
+}
+</script></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script - Lists" id="61403efc-d879-4701-86a6-2aa05aed54e2"><con:settings/><con:config><script>//Working with Lists and Maps
+String fruit, country
+
+fruit = 'Apple'
+fruit = 'Banana'
+
+//defining a list
+def fruits = ['Apple', 'Banana', 'Grapes', 'Orange', 'Mango']
+
+log.info "Fruit name = $fruit"
+
+log.info "Possible fruits are: $fruits"
+
+//loop
+
+fruits.each{
+	fruitName -> 
+	log.info "Name is $fruitName"
+}
+
+//checking if a list contains a specific value
+
+String desiredFruit = 'Carrot'
+boolean hasFruit = fruits.contains(desiredFruit)
+
+if(hasFruit == true) {
+log.info "A fruit list contains $desiredFruit"
+}
+else
+{
+log.error "Can't find $desiredFruit in a list"
+	
+}
+
+//Adding a fruit to a list
+
+fruits.add('Papaya')
+fruits &lt;&lt; ('Carrot')
+
+hasFruit = fruits.contains(desiredFruit)
+
+log.warn "----------------After adding----------------"
+if(hasFruit == true) {
+log.info "A fruit list contains $desiredFruit"
+}
+else
+{
+log.error "Can't find $desiredFruit in a list"
+	
+}
+//remove carrot from a list
+fruits.remove('Carrot')
+hasFruit = fruits.contains(desiredFruit)
+
+log.warn "----------------After removing----------------"
+if(hasFruit == true) {
+log.info "A fruit list contains $desiredFruit"
+}
+else
+{
+log.error "Can't find $desiredFruit in a list"
+	
+}</script></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script - Maps" id="ca43fccd-6df2-4210-8cac-882c71fb3611"><con:settings/><con:config><script>//defining a map
+def countries = ['POL' : 'Poland',
+					  'USA' : 'United States',
+					  'RUS' : 'Russia'
+					  ]
+
+//finding an element of a map
+String desiredCountry = 'POL'
+
+boolean identifiedCountry = countries.containsKey(desiredCountry)
+//getting a country name
+String countryName = countries.get(desiredCountry)
+
+if (identifiedCountry)
+{
+log.info "Found country: $desiredCountry:  $countryName"
+}
+else
+{
+log.error "Did not find: $desiredCountry in a map"
+}
+
+//adding a new entry to a map
+countries.put('DEU', 'Germany')
+
+log.info countries
+
+
+
+
+
+</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties><con:property><con:name>username</con:name><con:value>okles</con:value></con:property><con:property><con:name>password</con:name><con:value>uptheirons</con:value></con:property></con:properties><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

@@ -726,4 +726,94 @@ log.info countries
 
 
 
+</script></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script - Assertions" id="dc67f380-f3ea-41ee-976b-40cd2a81edba"><con:settings/><con:config><script>String expectedName, actualName
+
+expectedName = 'Lukasz'
+actualName = 'Lukasz'
+
+int a,b,c
+a=10
+b=10
+c= a+b
+
+log.info 'Before assertion: ' 
+
+assert expectedName == actualName,"Names are not matching. Expected name is $expectedName , while actual name is $actualName"
+assert c == 20,"Values are not matching"
+log.info 'After assertion: ' 
+
+def fruits = ['Apple','Banana','Grapes','Mango']
+
+assert true == fruits.contains('Apple')
+
+</script></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script - Reading project artifacts" id="352bc191-0411-4aa7-8a12-487ca80fd773"><con:settings/><con:config><script>//test case name
+log.info testRunner.testCase.name
+
+//test suite name
+log.info testRunner.testCase.testSuite.name
+
+//project name
+log.info testRunner.testCase.testSuite.project.name
+
+//workspace name
+log.info testRunner.testCase.testSuite.project.workspace.name
+
+//accessing a test case from an other test suite
+log.info testRunner.testCase.testSuite.project.getTestSuiteByName('TS01_Bank service testing').getTestCaseByName('TC01_getBank operation').name
+
+//loop through all test suites and print their names
+def testSuiteMap = testRunner.testCase.testSuite.project.testSuites
+
+testSuiteMap.each
+{
+	tsEntry -> log.info tsEntry.key  
+}
+</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="ffe2d657-6abb-4feb-ad39-86913a025e58" name="TS06_Groovy Automation"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="a4622296-c079-457d-943b-c81a9e74411e" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TC01_getBank operation" searchProperties="true"><con:settings/><con:testStep type="request" id="0a11f12b-65de-49f8-9282-467567194b8a" name="getBank - BLZ code request 28069994"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BLZServiceSOAP11Binding</con:interface><con:operation>getBank</con:operation><con:request name="getBank - BLZ code request 28069994" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="951d1b3d-4e92-4ad9-aa07-ff074acde3ec"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.thomas-bayer.com/axis2/services/BLZService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:blz="http://thomas-bayer.com/blz/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <blz:getBank>\r
+         <blz:blz>28069994</blz:blz>\r
+      </blz:getBank>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="726119d7-1090-4e21-89e4-d93cb738da68" name="SOAP Response"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://thomas-bayer.com/blz/BLZServicePortType/getBankRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script - calling a test step" id="2f59117d-2bd0-4ff9-be45-72027ac91d15"><con:settings/><con:config><script>import groovy.util.XmlSlurper
+
+//calling a test step
+def testStepName='getBank - BLZ code request 28069994'
+def testStep = testRunner.testCase.getTestStepByName(testStepName)
+
+//running a test step
+def response = testStep.run(testRunner,context)
+log.info response
+
+//creating an instance of an XMLSlurper
+def xmlSlurper = new XmlSlurper()
+
+//parse the response
+def envelope = xmlSlurper.parseText(response.responseContentAsXml)
+log.info envelope
+
+//assert the web service response content
+String expectedBicCode = 'GENODEF1SPL'
+String actualBicCode = envelope.Body.getBankResponse.details.bic
+
+log.warn "actualBicCode = $actualBicCode"
+
+assert expectedBicCode == actualBicCode, "BIC Code not matching, expected value is $expectedBicCode, while actual one is $actualBicCode"</script></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script - Reading a File" id="00d85912-5f51-44f5-9c33-884effa55327"><con:settings/><con:config><script>def filePath = 'D:\\Soap Projekty\\blz-service-data.txt'
+File file = new File(filePath)
+
+//loop through the file and print it 
+def blz,bezeichnung,ort,plz,bic
+
+file.eachLine
+{
+	line->
+	log.info line 
+	def lineData = line.split(',')
+	blz = lineData[0] //blzCode
+	bezeichnung = lineData[1]
+	bic = lineData[2]
+	ort = lineData[3]
+	plz = lineData[4]
+	log.warn "blz:  $blz, bezeichung:  $bezeichnung, BIC: $bic, ort: $ort, plz: $plz"
+}
 </script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties><con:property><con:name>username</con:name><con:value>okles</con:value></con:property><con:property><con:name>password</con:name><con:value>uptheirons</con:value></con:property></con:properties><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

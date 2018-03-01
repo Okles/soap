@@ -816,4 +816,63 @@ file.eachLine
 	plz = lineData[4]
 	log.warn "blz:  $blz, bezeichung:  $bezeichnung, BIC: $bic, ort: $ort, plz: $plz"
 }
+</script></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="4ad3885e-5252-4e78-aca7-6b056980042a" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TC02_DataDrivenTesting" searchProperties="true"><con:settings/><con:testStep type="request" id="93d38218-a28a-4f3f-96fb-3d0001f5488c" name="getBank - Request 1" disabled="true"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BLZServiceSOAP11Binding</con:interface><con:operation>getBank</con:operation><con:request name="getBank - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="6d1115b6-b960-4eeb-aaf8-c416b17c6700"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.thomas-bayer.com/axis2/services/BLZService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:blz="http://thomas-bayer.com/blz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <blz:getBank>
+         <blz:blz>55020500</blz:blz>
+      </blz:getBank>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="baaa76c8-d86d-4194-9c85-3c2db977b15b" name="SOAP Response"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://thomas-bayer.com/blz/BLZServicePortType/getBankRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script - E2E Testing" id="89af5fe3-8821-4318-8dbc-434eb68db6af"><con:settings/><con:config><script>import com.eviware.soapui.support.GroovyUtils
+
+//Read bank service data from a file
+File blzFile = new File('D:\\Soap Projekty\\blz-service-data.txt')
+String blz,bez,ort,plz,bic
+String bezInResponse,ortInReponse,plzInResponse,bicInResponse
+def lineData
+
+//create an instance of GroovyUtils
+def groovyUtils = new GroovyUtils(context)
+def requestXmlHolder,responseXmlHolder
+//loop from a file and read content
+blzFile.eachLine
+{
+	line ->
+	lineData = line.split(',')
+	blz = lineData[0] //blz
+     bez = lineData[1] //blz	
+	bic = lineData[2] //blz
+	ort = lineData[3]
+	plz = lineData[4]
+	log.info "blz: $blz, bez: $bez, bic: $bic, ort: $ort, plz: $plz"
+
+	requestXmlHolder = groovyUtils.getXmlHolder("getBank - Request 1#Request")
+	requestXmlHolder ["//blz:blz"] = blz
+
+	//update a property value
+	requestXmlHolder.updateProperty()
+	
+	//Call a getBank operation with BLZ code from a file
+	testRunner.testCase.getTestStepByName('getBank - Request 1').run(testRunner,context)
+	responseXmlHolder = groovyUtils.getXmlHolder("getBank - Request 1#Response")
+
+	//blzInResponse = responseXmlHolder["//ns1:blz"] 
+	bezInResponse = responseXmlHolder["//ns1:bezeichnung"] 
+	ortInResponse = responseXmlHolder ["//ns1:ort"] 
+	plzInResponse = responseXmlHolder["//ns1:plz"] 
+	bicInResponse = responseXmlHolder["//ns1:bic"] 
+
+	log.warn  "bezInRespone: $bezInResponse, bicInResponse: $bicInResponse, ortInResponse: $ortInResponse, plzInResponse: $plzInResponse"
+	
+	//Write assertions for bic,ort,plz,bezeichnung
+	//assert blz == blzInResponse
+	assert bez == bezInResponse
+	assert ort == ortInResponse
+	assert plz == plzInResponse
+	assert bic == bicInResponse
+
+}
+
+
+
 </script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties><con:property><con:name>username</con:name><con:value>okles</con:value></con:property><con:property><con:name>password</con:name><con:value>uptheirons</con:value></con:property></con:properties><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

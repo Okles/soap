@@ -768,6 +768,41 @@ testSuiteMap.each
 {
 	tsEntry -> log.info tsEntry.key  
 }
+</script></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script - Read data from Excel sheet" id="9b91a3b9-c89d-4c5a-b32b-006a09f5c88b"><con:settings/><con:config><script>//importing JXL libraries
+import jxl.*
+
+//create a file instance
+//def excelFilePath = "D:\\Soap Projekty\\DataforBLZService.xls"
+File excelFile = new File('D:\\Soap Projekty\\DataforBLZService.xls')
+
+//create a workbook instance
+Workbook workbook = Workbook.getWorkbook(excelFile)
+
+//load a sheet
+Sheet sheet = workbook.getSheet (0)
+
+//i want to read the data in a sheet
+int noOfRows = sheet.getRows() -1  //number of rows in a sheet minus headers
+log.info "Number of rows in a file is $noOfRows"
+
+//loop through the records and print data
+def blz,bic,bez,ort,plz
+for(int rowIdx in 1..noOfRows)
+{
+	//read the contents of the cell
+	log.warn '--------------------------------------'
+	blz =  sheet.getCell(0,rowIdx).getContents() //colIdx,rowIdx
+	bez = sheet.getCell(1,rowIdx).getContents() //colIdx,rowIdx
+	bic =  sheet.getCell(2,rowIdx).getContents() //colIdx,rowIdx
+	ort = sheet.getCell(3,rowIdx).getContents() //colIdx,rowIdx
+	plz =  sheet.getCell(4,rowIdx).getContents() //colIdx,rowIdx
+	log.info "blz: $blz, bez: $bez, bic: $bic, ort: $ort, plz: $plz"
+
+	log.warn '--------------------------------------'
+}
+
+//closing a sheet
+workbook.close()
 </script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="ffe2d657-6abb-4feb-ad39-86913a025e58" name="TS06_Groovy Automation"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="a4622296-c079-457d-943b-c81a9e74411e" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TC01_getBank operation" searchProperties="true"><con:settings/><con:testStep type="request" id="0a11f12b-65de-49f8-9282-467567194b8a" name="getBank - BLZ code request 28069994"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BLZServiceSOAP11Binding</con:interface><con:operation>getBank</con:operation><con:request name="getBank - BLZ code request 28069994" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="951d1b3d-4e92-4ad9-aa07-ff074acde3ec"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.thomas-bayer.com/axis2/services/BLZService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:blz="http://thomas-bayer.com/blz/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r

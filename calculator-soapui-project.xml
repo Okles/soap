@@ -291,4 +291,37 @@ declare namespace ns1='http://tempuri.org/';
          <tem:intB>2</tem:intB>\r
       </tem:Subtract>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="678672b8-5446-4a78-9527-1b43bfaab80c" name="SOAP Response"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/Subtract"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="678672b8-5446-4a78-9527-1b43bfaab80c" name="SOAP Response"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/Subtract"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="891851e0-fde6-4ced-bce4-fab9c70c52af" name="TS02_ValidateCalculatorServiceWithGroovy"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="a925d990-452c-459b-b3e2-304e11da79b9" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TC01_ValidateAddOperation" searchProperties="true"><con:settings/><con:testStep type="request" id="90b2fcbe-79db-4e51-96a2-3a691fd42758" name="TC01_Adding"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorSoap</con:interface><con:operation>Add</con:operation><con:request name="TC01_Adding" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="412c5299-c24a-40b2-a82d-db7db1ae97b5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.dneonline.com/calculator.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:Add>\r
+         <tem:intA>3</tem:intA>\r
+         <tem:intB>2</tem:intB>\r
+      </tem:Add>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c7452cd4-3e45-443d-8260-d7e20053e6bd" name="SOAP Response"/><con:assertion type="XPath Match" id="83717e5e-2f55-4998-9911-1d0218e5861f" name="XPath Match"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='http://tempuri.org/';
+//ns1:AddResponse/ns1:AddResult/text()</path><content>5</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/Add"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script - Validate Add Operation" id="00c834b1-6c9f-4ecf-9a7f-c3d97e66bfe1"><con:settings/><con:config><script>import groovy.util.XmlSlurper
+
+//calling a test step
+def testStepName='TC01_Adding'
+def testStep = testRunner.testCase.getTestStepByName(testStepName)
+
+//running a test step
+def response = testStep.run(testRunner,context)
+log.info response
+
+//creating an instance of an XMLSlurper
+def xmlSlurper = new XmlSlurper()
+
+//parse the response
+def envelope = xmlSlurper.parseText(response.responseContentAsXml)
+log.info envelope
+
+//assert the web service response content
+String expectedResult= 6
+String actualResult = envelope.Body.AddResponse.AddResult
+
+log.warn "Actual Result = $actualResult"
+
+assert expectedResult == actualResult, "Value not matching, expected value is $expectedResult, while actual one is $actualResult"</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

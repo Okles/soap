@@ -84,11 +84,11 @@
       <http:address location="http://www.thomas-bayer.com/axis2/services/BLZService"/>
     </wsdl:port>
   </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8088/BLZLocalService</con:endpoint><con:endpoint>http://www.thomas-bayer.com/axis2/services/BLZService</con:endpoint></con:endpoints><con:operation id="d4aaddf5-0c60-4915-b4d8-9b9fca965bc3" isOneWay="false" action="" name="getBank" bindingOperationName="getBank" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ba8b4d56-6dd7-46f5-a4d5-6294e06cc25a" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.thomas-bayer.com/axis2/services/BLZService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:blz="http://thomas-bayer.com/blz/">\r
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://Okles-PC:8088/localBlzServiceMock</con:endpoint><con:endpoint>http://localhost:8088/localBlzServiceMock</con:endpoint><con:endpoint>http://www.thomas-bayer.com/axis2/services/BLZService</con:endpoint></con:endpoints><con:operation id="d4aaddf5-0c60-4915-b4d8-9b9fca965bc3" isOneWay="false" action="" name="getBank" bindingOperationName="getBank" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ba8b4d56-6dd7-46f5-a4d5-6294e06cc25a" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/localBlzServiceMock</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:blz="http://thomas-bayer.com/blz/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <blz:getBank>\r
-         <blz:blz>28069994</blz:blz>\r
+         <blz:blz>20010020</blz:blz>\r
       </blz:getBank>\r
    </soapenv:Body>\r
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://thomas-bayer.com/blz/BLZServicePortType/getBankRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="a0118e79-1477-4d8e-982a-435c6d5db9fe" wsaVersion="NONE" name="BLZServiceSOAP12Binding" type="wsdl" bindingName="{http://thomas-bayer.com/blz/}BLZServiceSOAP12Binding" soapVersion="1_2" anonymous="optional" definition="http://www.thomas-bayer.com/axis2/services/BLZService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://www.thomas-bayer.com/axis2/services/BLZService?wsdl"><con:part><con:url>http://www.thomas-bayer.com/axis2/services/BLZService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://thomas-bayer.com/blz/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://thomas-bayer.com/blz/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
@@ -1235,4 +1235,64 @@ calculateAreaOfCircle(radius)
 
 
 
-</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties><con:property><con:name>username</con:name><con:value>okles</con:value></con:property><con:property><con:name>password</con:name><con:value>uptheirons</con:value></con:property></con:properties><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:mockService id="cef814dc-fd32-40f1-97f4-15b6c31e0e19" port="8088" path="/localBlzServiceMock" host="localhost" name="BLZServiceSOAP11Binding MockService" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getBank" id="dc473e7c-1195-4123-a130-21092c07b454" interface="BLZServiceSOAP11Binding" operation="getBank"><con:settings/><con:defaultResponse>Response 55010111</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>import com.eviware.soapui.support.GroovyUtils
+
+//Step 1: Read/extract a BLZ code from a request
+
+//Create the instance of GroovyUtils
+def groovyUtils = new GroovyUtils(context)
+
+//Read the request XML file
+def requestMessage = mockRequest.requestContent
+def requestXml = groovyUtils.getXmlHolder(requestMessage)
+
+//Extracting a BLZ code from an XML file
+def blz = requestXml.getNodeValue('//blz:blz')
+log.info "BLZ is equal to $blz"
+
+//Step 2: Based on BLZ code, give a response
+return "Response $blz"</con:dispatchPath><con:response name="Response 55010111" id="110d9f4a-4518-4678-8738-f0931f4d1e11" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <ns1:getBankResponse xmlns:ns1="http://thomas-bayer.com/blz/">
+         <ns1:details>
+            <ns1:bezeichnung>SEB</ns1:bezeichnung>
+            <ns1:bic>ESSEDE5F550</ns1:bic>
+            <ns1:ort>Mainz a Rhein</ns1:ort>
+            <ns1:plz>55116</ns1:plz>
+         </ns1:details>
+      </ns1:getBankResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="{http://schemas.xmlsoap.org/wsdl/http/}//thomas-bayer.com/blz/BLZService/getBankResponse"/></con:response><con:response name="Response 20010020" id="5b559961-5b81-4559-b6d2-c8f7cddaaf8f" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <ns1:getBankResponse xmlns:ns1="http://thomas-bayer.com/blz/">
+         <ns1:details>
+            <ns1:bezeichnung>Postbank (Giro)</ns1:bezeichnung>
+            <ns1:bic>PBNKDEFF200</ns1:bic>
+            <ns1:ort>Hamburg</ns1:ort>
+            <ns1:plz>22280</ns1:plz>
+         </ns1:details>
+      </ns1:getBankResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="{http://schemas.xmlsoap.org/wsdl/http/}//thomas-bayer.com/blz/BLZService/getBankResponse"/></con:response><con:response name="Response 55010424" id="66d7cc21-4b2a-492c-8e2f-44d92d2cf82b" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <ns1:getBankResponse xmlns:ns1="http://thomas-bayer.com/blz/">
+         <ns1:details>
+            <ns1:bezeichnung>Aareal Bank</ns1:bezeichnung>
+            <ns1:bic>AARBDE5W550</ns1:bic>
+            <ns1:ort>Mainz a Rhein</ns1:ort>
+            <ns1:plz>55027</ns1:plz>
+         </ns1:details>
+      </ns1:getBankResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="{http://schemas.xmlsoap.org/wsdl/http/}//thomas-bayer.com/blz/BLZService/getBankResponse"/></con:response><con:response name="Response 55010800" id="379bb2c3-57dc-4eaf-b5c4-c78fb5c1283a" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <ns1:getBankResponse xmlns:ns1="http://thomas-bayer.com/blz/">
+         <ns1:details>
+            <ns1:bezeichnung>Investitions- und Strukturbank RP</ns1:bezeichnung>
+            <ns1:bic>ISBRDE51XXX</ns1:bic>
+            <ns1:ort>Mainz a Rhein</ns1:ort>
+            <ns1:plz>55015</ns1:plz>
+         </ns1:details>
+      </ns1:getBankResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="{http://schemas.xmlsoap.org/wsdl/http/}//thomas-bayer.com/blz/BLZService/getBankResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties><con:property><con:name>username</con:name><con:value>okles</con:value></con:property><con:property><con:name>password</con:name><con:value>uptheirons</con:value></con:property></con:properties><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

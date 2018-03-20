@@ -1112,8 +1112,27 @@ log.error 'You got nothing!'
 }
 
 }
-</script></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script - SQL" id="5c2b05bd-59c0-40c0-9434-b07a8a0e3bd3"><con:settings/><con:config><script>//Read data from SQL table
-String sql = 'SELECT * FROM BLZ_DATA'</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="ffe2d657-6abb-4feb-ad39-86913a025e58" name="TS07_Groovy Automation"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="a4622296-c079-457d-943b-c81a9e74411e" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TC01_getBank operation" searchProperties="true"><con:settings/><con:testStep type="request" id="0a11f12b-65de-49f8-9282-467567194b8a" name="getBank - BLZ code request 28069994"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BLZServiceSOAP11Binding</con:interface><con:operation>getBank</con:operation><con:request name="getBank - BLZ code request 28069994" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="951d1b3d-4e92-4ad9-aa07-ff074acde3ec"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.thomas-bayer.com/axis2/services/BLZService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:blz="http://thomas-bayer.com/blz/">\r
+</script></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script - SQL" id="5c2b05bd-59c0-40c0-9434-b07a8a0e3bd3"><con:settings/><con:config><script>import groovy.sql.Sql
+
+//Read data from SQL table
+String sqlStmt = 'SELECT * FROM blzData'
+
+def databaseUrl ='jdbc:mysql://localhost:3306/demo?user=root&amp;password=root '
+def username ='root'
+def password ='root'
+def driverName ='com.mysql.jdbc.Driver' //taken from https://www.soapui.org/jdbc/reference/jdbc-drivers.html, it is also necessary to install the drivers into bin/etc and lib folders in soapUI directory
+def sql = Sql.newInstance(databaseUrl,username,password,driverName)
+
+sql.eachRow(sqlStmt)
+{
+	row ->
+	blz = row['blzCode']
+	bic =  row['bicCode'] 
+	log.info "blzCode is $blz, BIC is $bic"
+}
+
+
+</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="ffe2d657-6abb-4feb-ad39-86913a025e58" name="TS07_Groovy Automation"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="a4622296-c079-457d-943b-c81a9e74411e" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TC01_getBank operation" searchProperties="true"><con:settings/><con:testStep type="request" id="0a11f12b-65de-49f8-9282-467567194b8a" name="getBank - BLZ code request 28069994"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BLZServiceSOAP11Binding</con:interface><con:operation>getBank</con:operation><con:request name="getBank - BLZ code request 28069994" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="951d1b3d-4e92-4ad9-aa07-ff074acde3ec"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.thomas-bayer.com/axis2/services/BLZService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:blz="http://thomas-bayer.com/blz/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <blz:getBank>\r

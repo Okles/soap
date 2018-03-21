@@ -1254,7 +1254,36 @@ calculateAreaOfCircle(radius)
 
 
 
-</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:mockService id="cef814dc-fd32-40f1-97f4-15b6c31e0e19" port="8088" path="/localBlzServiceMock" host="localhost" name="BLZServiceSOAP11Binding MockService" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getBank" id="dc473e7c-1195-4123-a130-21092c07b454" interface="BLZServiceSOAP11Binding" operation="getBank"><con:settings/><con:defaultResponse>Response 55010111</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>import com.eviware.soapui.support.GroovyUtils
+</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="0d80d20d-6228-4336-aa8d-a8c492f4aab1" name="TS09_JDBC"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="a4b2cf9f-a06a-444c-b402-ca3f61b9d005" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="groovy" name="Groovy Script" id="fd0d285f-1a73-449c-aa22-9632885a525a"><con:settings/><con:config><script>def s = testRunner.testCase.getPropertyValue( "blzCodes")
+def list = s.split(',')
+
+def i = Integer.parseInt(testRunner.testCase.getPropertyValue( "counter"))
+
+// Do your action here
+log.info list[i]
+
+// increment the counter
+i++
+testRunner.testCase.setPropertyValue( "counter", i.toString())</script></con:config></con:testStep><con:testStep type="jdbc" name="JDBC Request" id="f7a82abd-bf14-4b34-8c55-e482d2021915"><con:settings/><con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:driver>com.mysql.jdbc.Driver</con:driver><con:connectionString>jdbc:mysql://localhost:3306/?user=root&amp;password=root</con:connectionString><con:query>SELECT * from demo.blzData</con:query><con:properties/></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer - Request" id="431b669f-9423-45ab-8d65-9370a35bd846"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>blzTransfer</con:name><con:sourceType>ResponseAsXml</con:sourceType><con:sourceStep>JDBC Request</con:sourceStep><con:sourcePath>//Results/ResultSet/Row[1]/BLZDATA.BLZCODE</con:sourcePath><con:targetType>Request</con:targetType><con:targetStep>getBank - Request 1</con:targetStep><con:targetPath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='http://thomas-bayer.com/blz/';
+//ns1:getBank/ns1:blz</con:targetPath><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" id="5d85cb97-da12-42a6-93b6-ae374ad35fae" name="getBank - Request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BLZServiceSOAP11Binding</con:interface><con:operation>getBank</con:operation><con:request name="getBank - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="332c4128-931b-4cfa-804a-16db3e9559e8"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.thomas-bayer.com/axis2/services/BLZService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:blz="http://thomas-bayer.com/blz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <blz:getBank>
+         <blz:blz>55010111</blz:blz>
+      </blz:getBank>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="64a76e3a-772c-473f-af61-830ef02a9260" name="SOAP Response"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://thomas-bayer.com/blz/BLZServicePortType/getBankRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="groovy" name="Continue" id="7332333d-4798-419f-8f51-5f468cf66264"><con:settings/><con:config><script>def s = testRunner.testCase.getPropertyValue( "blzCodes")
+def list = s.split(',')
+def i = Integer.parseInt(testRunner.testCase.getPropertyValue( "counter"))
+
+if (i &lt; list.size()) {
+        // Looping as long as we have values
+	testRunner.gotoStepByName ('Groovy Script')
+} else {
+        // Otherwise we set counter to initial value
+	testRunner.testCase.setPropertyValue( "counter", new Integer(0).toString())
+}</script></con:config></con:testStep><con:properties><con:property><con:name>blzCodes</con:name><con:value>55010111,55010424,55010800,55020100,55020500</con:value></con:property><con:property><con:name>counter</con:name><con:value>0</con:value></con:property></con:properties></con:testCase><con:properties/></con:testSuite><con:mockService id="cef814dc-fd32-40f1-97f4-15b6c31e0e19" port="8088" path="/localBlzServiceMock" host="localhost" name="BLZServiceSOAP11Binding MockService" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getBank" id="dc473e7c-1195-4123-a130-21092c07b454" interface="BLZServiceSOAP11Binding" operation="getBank"><con:settings/><con:defaultResponse>Response 55010111</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>import com.eviware.soapui.support.GroovyUtils
 
 //Step 1: Read/extract a BLZ code from a request
 

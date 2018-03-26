@@ -1,0 +1,16 @@
+Status: OK
+Time Taken: 1
+Size: 0
+Timestamp: Mon Mar 26 21:14:58 CEST 2018
+TestStep: Property Transfer - Request
+
+----------------- Messages ------------------------------
+Performed transfer [blzTransfer]
+----------------------------------------------------
+blzTransfer transferred [[55010111]] from [JDBC Request.ResponseAsXml] to [getBank - Request 1.Request]
+------------ source path -------------
+//Results/ResultSet/Row[1]/BLZDATA.BLZCODE
+------------ target path -------------
+declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='http://thomas-bayer.com/blz/';
+//ns1:getBank/ns1:blz

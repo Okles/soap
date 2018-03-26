@@ -1,0 +1,32 @@
+Status: OK
+Time Taken: 188
+Size: 0
+Timestamp: Mon Mar 26 21:14:55 CEST 2018
+TestStep: Property Transfer
+
+----------------- Messages ------------------------------
+Performed transfer [blzCodeTransfer]
+Performed transfer [bicCodeTransfer]
+Performed transfer [ortTransfer]
+Performed transfer [plzTransfer]
+----------------------------------------------------
+blzCodeTransfer transferred [[47852760]] from [#TestCase#.blzCode] to [Properties.blzCode]
+------------ source path -------------
+
+bicCodeTransfer transferred [[WELADED1RTG]] from [getBank - Request for BLZ code 47852760.Response] to [Properties.bicCode]
+------------ source path -------------
+declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='http://thomas-bayer.com/blz/';
+
+//ns1:getBankResponse/ns1:details/ns1:bic
+
+ortTransfer transferred [[Rietberg]] from [getBank - Request for BLZ code 47852760.Response] to [Properties.ort]
+------------ source path -------------
+declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='http://thomas-bayer.com/blz/';
+//ns1:getBankResponse/ns1:details/ns1:ort
+plzTransfer transferred [[33381]] from [getBank - Request for BLZ code 47852760.Response] to [Properties.plz]
+------------ source path -------------
+declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='http://thomas-bayer.com/blz/';
+//ns1:getBankResponse/ns1:details/ns1:plz

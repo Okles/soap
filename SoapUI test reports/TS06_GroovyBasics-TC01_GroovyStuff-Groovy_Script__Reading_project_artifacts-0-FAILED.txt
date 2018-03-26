@@ -1,0 +1,10 @@
+Status: FAILED
+Time Taken: 32
+Size: 0
+Timestamp: Mon Mar 26 21:14:57 CEST 2018
+TestStep: Groovy Script - Reading project artifacts
+Error:java.lang.NullPointerException: Cannot get property 'name' on null object
+
+----------------- Messages ------------------------------
+java.lang.NullPointerException: Cannot get property 'name' on null object
+error at line: 11

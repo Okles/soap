@@ -1,0 +1,7 @@
+Status: UNKNOWN
+Time Taken: 4
+Size: 1703
+Timestamp: Mon Mar 26 21:14:58 CEST 2018
+TestStep: JDBC Request
+
+----------------- Messages ------------------------------

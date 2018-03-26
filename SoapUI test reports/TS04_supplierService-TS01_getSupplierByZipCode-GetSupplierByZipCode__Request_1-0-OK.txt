@@ -1,0 +1,213 @@
+Status: OK
+Time Taken: 803
+Size: 5077
+Timestamp: Mon Mar 26 21:14:56 CEST 2018
+TestStep: GetSupplierByZipCode - Request 1
+
+----------------- Messages ------------------------------
+
+----------------- Properties ------------------------------
+Endpoint: http://www.webservicex.net/medicareSupplier.asmx
+Encoding: UTF-8
+
+---------------- Request ---------------------------
+Request Headers: SOAPAction : "http://www.webservicex.net/GetSupplierByZipCode"
+Connection : Keep-Alive
+User-Agent : Apache-HttpClient/4.1.1 (java 1.5)
+Host : www.webservicex.net
+Accept-Encoding : gzip,deflate
+Content-Length : 329
+Content-Type : text/xml;charset=UTF-8
+
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.webservicex.net/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:GetSupplierByZipCode>
+         <!--Optional:-->
+         <web:zip>75070</web:zip>
+      </web:GetSupplierByZipCode>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+---------------- Response --------------------------
+Response Headers: Cache-Control : private, max-age=0
+Server : Microsoft-IIS/7.0
+Content-Encoding : gzip
+X-AspNet-Version : 4.0.30319
+Vary : Accept-Encoding
+#status# : HTTP/1.1 200 OK
+Content-Length : 1473
+Date : Mon, 26 Mar 2018 19:14:57 GMT
+Content-Type : text/xml; charset=utf-8
+X-Powered-By : ASP.NET
+
+
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <soap:Body>
+      <GetSupplierByZipCodeResponse xmlns="http://www.webservicex.net/">
+         <GetSupplierByZipCodeResult>true</GetSupplierByZipCodeResult>
+         <SupplierDataLists>
+            <SupplierDatas>
+               <SupplierData>
+                  <SupplierNumber>0145370001</SupplierNumber>
+                  <CompanyName>ANNE K WEBB OD PC</CompanyName>
+                  <Address1>312 A HWY 75N</Address1>
+                  <Address2/>
+                  <City>MCKINNEY</City>
+                  <Zip>TX</Zip>
+                  <ZipPlus4>75070</ZipPlus4>
+                  <Telephone/>
+                  <Description>(972)542-2681</Description>
+                  <IsSupplierParticipating>05</IsSupplierParticipating>
+               </SupplierData>
+               <SupplierData>
+                  <SupplierNumber>0191800001</SupplierNumber>
+                  <CompanyName>ALAN H UPCHURCH OD</CompanyName>
+                  <Address1>3705 ELDORADO PKWY</Address1>
+                  <Address2/>
+                  <City>MCKINNEY</City>
+                  <Zip>TX</Zip>
+                  <ZipPlus4>75070</ZipPlus4>
+                  <Telephone>4229</Telephone>
+                  <Description>(972)542-0331</Description>
+                  <IsSupplierParticipating>05</IsSupplierParticipating>
+               </SupplierData>
+               <SupplierData>
+                  <SupplierNumber>0282932325</SupplierNumber>
+                  <CompanyName>WALGREEN CO</CompanyName>
+                  <Address1>3001 ELDORADO PKWY</Address1>
+                  <Address2/>
+                  <City>MC KINNEY</City>
+                  <Zip>TX</Zip>
+                  <ZipPlus4>75070</ZipPlus4>
+                  <Telephone>4207</Telephone>
+                  <Description>(972)540-6667</Description>
+                  <IsSupplierParticipating>04</IsSupplierParticipating>
+               </SupplierData>
+               <SupplierData>
+                  <SupplierNumber>0483390908</SupplierNumber>
+                  <CompanyName>ALBERTSONS INC</CompanyName>
+                  <Address1>3001 S CENTRAL EXPY</Address1>
+                  <Address2>STE 200</Address2>
+                  <City>MC KINNEY</City>
+                  <Zip>TX</Zip>
+                  <ZipPlus4>75070</ZipPlus4>
+                  <Telephone>7512</Telephone>
+                  <Description>(972)548-1088</Description>
+                  <IsSupplierParticipating>04</IsSupplierParticipating>
+               </SupplierData>
+               <SupplierData>
+                  <SupplierNumber>0879960004</SupplierNumber>
+                  <CompanyName>RANDALLS FOOD AND DRUGS INC</CompanyName>
+                  <Address1>3001 HARDIN BLVD</Address1>
+                  <Address2/>
+                  <City>MCKINNEY</City>
+                  <Zip>TX</Zip>
+                  <ZipPlus4>75070</ZipPlus4>
+                  <Telephone>7489</Telephone>
+                  <Description>(972)547-7110</Description>
+                  <IsSupplierParticipating>04</IsSupplierParticipating>
+               </SupplierData>
+               <SupplierData>
+                  <SupplierNumber>1012120023</SupplierNumber>
+                  <CompanyName>BROOKSHIRE GROCERY COMPANY</CompanyName>
+                  <Address1>208 N CENTRAL EXPY</Address1>
+                  <Address2/>
+                  <City>MC KINNEY</City>
+                  <Zip>TX</Zip>
+                  <ZipPlus4>75070</ZipPlus4>
+                  <Telephone>3518</Telephone>
+                  <Description>(972)548-7025</Description>
+                  <IsSupplierParticipating>04</IsSupplierParticipating>
+               </SupplierData>
+               <SupplierData>
+                  <SupplierNumber>4077810037</SupplierNumber>
+                  <CompanyName>UNITED SUPERMARKETS LTD</CompanyName>
+                  <Address1>6100 ELDORADO PKWY</Address1>
+                  <Address2/>
+                  <City>MCKINNEY</City>
+                  <Zip>TX</Zip>
+                  <ZipPlus4>75070</ZipPlus4>
+                  <Telephone>5622</Telephone>
+                  <Description>(972)546-5150</Description>
+                  <IsSupplierParticipating>04</IsSupplierParticipating>
+               </SupplierData>
+               <SupplierData>
+                  <SupplierNumber>1195882590</SupplierNumber>
+                  <CompanyName>ECKERD CORPORATION</CompanyName>
+                  <Address1>2100 ELDORADO PKWY</Address1>
+                  <Address2/>
+                  <City>MC KINNEY</City>
+                  <Zip>TX</Zip>
+                  <ZipPlus4>75070</ZipPlus4>
+                  <Telephone>4356</Telephone>
+                  <Description>(214)585-0472</Description>
+                  <IsSupplierParticipating>04</IsSupplierParticipating>
+               </SupplierData>
+               <SupplierData>
+                  <SupplierNumber>1307140137</SupplierNumber>
+                  <CompanyName>KROGER TEXAS LP</CompanyName>
+                  <Address1>2901 LAKE FOREST DR</Address1>
+                  <Address2/>
+                  <City>MC KINNEY</City>
+                  <Zip>TX</Zip>
+                  <ZipPlus4>75070</ZipPlus4>
+                  <Telephone>9100</Telephone>
+                  <Description>(972)540-1196</Description>
+                  <IsSupplierParticipating>04</IsSupplierParticipating>
+               </SupplierData>
+               <SupplierData>
+                  <SupplierNumber>4691680001</SupplierNumber>
+                  <CompanyName>JOBERN MEDICAL SERVICES</CompanyName>
+                  <Address1>2316 SHELDON DR</Address1>
+                  <Address2/>
+                  <City>MCKINNEY</City>
+                  <Zip>TX</Zip>
+                  <ZipPlus4>75070</ZipPlus4>
+                  <Telephone>2443</Telephone>
+                  <Description>(214)544-7203</Description>
+                  <IsSupplierParticipating>01</IsSupplierParticipating>
+               </SupplierData>
+               <SupplierData>
+                  <SupplierNumber>4360370322</SupplierNumber>
+                  <CompanyName>WAL MART STORES TEXAS LP</CompanyName>
+                  <Address1>5001 MCKINNEY RANCH PKWY</Address1>
+                  <Address2/>
+                  <City>MCKINNEY</City>
+                  <Zip>TX</Zip>
+                  <ZipPlus4>75070</ZipPlus4>
+                  <Telephone>8601</Telephone>
+                  <Description>(972)542-8362</Description>
+                  <IsSupplierParticipating>04</IsSupplierParticipating>
+               </SupplierData>
+               <SupplierData>
+                  <SupplierNumber>4781330001</SupplierNumber>
+                  <CompanyName>ERIC K NEWBERRY</CompanyName>
+                  <Address1>2301 ELDORADO PKWY</Address1>
+                  <Address2>STE 200</Address2>
+                  <City>MCKINNEY</City>
+                  <Zip>TX</Zip>
+                  <ZipPlus4>75070</ZipPlus4>
+                  <Telephone>4362</Telephone>
+                  <Description>(972)562-0101</Description>
+                  <IsSupplierParticipating>05</IsSupplierParticipating>
+               </SupplierData>
+               <SupplierData>
+                  <SupplierNumber>4924500001</SupplierNumber>
+                  <CompanyName>MCKINNEY CVS L P</CompanyName>
+                  <Address1>6301 ELDORADO PKWY</Address1>
+                  <Address2/>
+                  <City>MCKINNEY</City>
+                  <Zip>TX</Zip>
+                  <ZipPlus4>75070</ZipPlus4>
+                  <Telephone>5627</Telephone>
+                  <Description>(972)542-4347</Description>
+                  <IsSupplierParticipating>04</IsSupplierParticipating>
+               </SupplierData>
+            </SupplierDatas>
+            <TotalRecords>13</TotalRecords>
+         </SupplierDataLists>
+      </GetSupplierByZipCodeResponse>
+   </soap:Body>
+</soap:Envelope>

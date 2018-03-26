@@ -1,0 +1,1 @@
+"D:\SmartBear\SoapUI-5.4.0\bin\testrunner.bat" -a -j -f"D:\SoapUI test reports" "D:\Soap Projekty\Banking-Project-soapui-project.xml"

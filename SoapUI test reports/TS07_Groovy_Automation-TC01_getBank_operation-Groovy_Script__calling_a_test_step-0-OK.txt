@@ -1,0 +1,7 @@
+Status: OK
+Time Taken: 138
+Size: 0
+Timestamp: Mon Mar 26 21:14:57 CEST 2018
+TestStep: Groovy Script - calling a test step
+
+----------------- Messages ------------------------------

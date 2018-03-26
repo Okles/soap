@@ -1,0 +1,30 @@
+Status: OK
+Time Taken: 2
+Size: 0
+Timestamp: Mon Mar 26 21:14:57 CEST 2018
+TestStep: Property Transfer
+
+----------------- Messages ------------------------------
+Performed transfer [bicTransfer]
+Performed transfer [ortTransfer]
+Performed transfer [plzTransfer]
+----------------------------------------------------
+bicTransfer transferred [[GENODEF1SPL]] from [getBank - Request 1.Response] to [Properties.bic_code]
+------------ source path -------------
+declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='http://thomas-bayer.com/blz/';
+
+//ns1:getBankResponse/ns1:details/ns1:bic
+ortTransfer transferred [[Spelle]] from [getBank - Request 1.Response] to [Properties.ort_code]
+------------ source path -------------
+declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='http://thomas-bayer.com/blz/';
+
+//ns1:getBankResponse/ns1:details/ns1:ort
+plzTransfer transferred [[48480]] from [getBank - Request 1.Response] to [Properties.plz_code]
+------------ source path -------------
+declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='http://thomas-bayer.com/blz/';
+
+//ns1:getBankResponse/ns1:details/ns1:plz
+

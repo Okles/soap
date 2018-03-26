@@ -1,0 +1,51 @@
+Status: OK
+Time Taken: 81
+Size: 410
+Timestamp: Mon Mar 26 21:14:56 CEST 2018
+TestStep: getBank - BLZ code request 28069994
+
+----------------- Messages ------------------------------
+
+----------------- Properties ------------------------------
+Endpoint: http://www.thomas-bayer.com/axis2/services/BLZService
+Encoding: UTF-8
+
+---------------- Request ---------------------------
+Request Headers: SOAPAction : ""
+Connection : Keep-Alive
+User-Agent : Apache-HttpClient/4.1.1 (java 1.5)
+Host : www.thomas-bayer.com
+Accept-Encoding : gzip,deflate
+Content-Length : 280
+Content-Type : text/xml;charset=UTF-8
+
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:blz="http://thomas-bayer.com/blz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <blz:getBank>
+         <blz:blz>28069994</blz:blz>
+      </blz:getBank>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+---------------- Response --------------------------
+Response Headers: Server : Apache-Coyote/1.1
+#status# : HTTP/1.1 200 OK
+Content-Length : 410
+Date : Mon, 26 Mar 2018 19:15:27 GMT
+Content-Type : text/xml;charset=UTF-8
+
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <ns1:getBankResponse xmlns:ns1="http://thomas-bayer.com/blz/">
+         <ns1:details>
+            <ns1:bezeichnung>Volksbank Spelle-Freren</ns1:bezeichnung>
+            <ns1:bic>GENODEF1SPL</ns1:bic>
+            <ns1:ort>Spelle</ns1:ort>
+            <ns1:plz>48480</ns1:plz>
+         </ns1:details>
+      </ns1:getBankResponse>
+   </soapenv:Body>
+</soapenv:Envelope>

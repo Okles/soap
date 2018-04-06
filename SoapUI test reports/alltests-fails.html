@@ -1,0 +1,47 @@
+<html xmlns:stringutils="xalan://com.eviware.soapui.support.StringUtils" xmlns:lxslt="http://xml.apache.org/xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SoapUI Test Results: All Failures</title>
+<link title="Style" type="text/css" rel="stylesheet" href="stylesheet.css">
+</head>
+<body onload="open('allclasses-frame.html','classListFrame')">
+<h1>SoapUI Test Results</h1>
+<hr size="1">
+<h2>All Failures</h2>
+<table width="95%" cellspacing="2" cellpadding="5" border="0" class="details">
+<tr valign="top">
+<th>Class</th><th>Name</th><th>Status</th><th width="80%">Type</th><th nowrap>Time (s)</th>
+</tr>
+<tr valign="top" class="Failure">
+<td><a href="Banking Project/2_Banking Project.TS06_GroovyBasics.html">Banking Project.TS06_GroovyBasics</a></td><td><a name="TC01_GroovyStuff"></a><a href="Banking Project/2_Banking Project.TS06_GroovyBasics.html#TC01_GroovyStuff">TC01_GroovyStuff</a></td><td>Failure</td><td>The test run was cancelled due to a failed test step.<br>
+<br>
+<code><h3><b>Groovy Script - SQL Failed</b></h3><pre>java.lang.ClassNotFoundException: com.mysql.jdbc.Driver<br/>error at line: 10<br/></pre><hr/></code></td><td>2.514</td>
+</tr>
+<tr valign="top" class="Failure">
+<td><a href="Banking Project/3_Banking Project.TS09_JDBC.html">Banking Project.TS09_JDBC</a></td><td><a name="TC01_SoapUIFree"></a><a href="Banking Project/3_Banking Project.TS09_JDBC.html#TC01_SoapUIFree">TC01_SoapUIFree</a></td><td>Failure</td><td>The test run was cancelled due to a failed test step.<br>
+<br>
+<code><h3><b>JDBC Request Failed</b></h3><pre>com.eviware.soapui.support.SoapUIException: Failed to initialize the connection that uses the [com.mysql.jdbc.Driver] driver. Connection string:  [jdbc:mysql://localhost:3306/demo?user=admin&password=#####].<br/></pre><hr/></code></td><td>0.003</td>
+</tr>
+<tr valign="top" class="Failure">
+<td><a href="Banking Project/3_Banking Project.TS09_JDBC.html">Banking Project.TS09_JDBC</a></td><td><a name="TC02_SoapUIPro"></a><a href="Banking Project/3_Banking Project.TS09_JDBC.html#TC02_SoapUIPro">TC02_SoapUIPro</a></td><td>Failure</td><td>The test run was cancelled due to a failed test step.<br>
+<br>
+<code><h3><b>JDBC Request Failed</b></h3><pre>com.eviware.soapui.support.SoapUIException: Failed to initialize the connection that uses the [com.mysql.jdbc.Driver] driver. Connection string:  [jdbc:mysql://127.0.0.1:3306/demo?user=root&password=#####].<br/></pre><hr/></code></td><td>0.111</td>
+</tr>
+<tr valign="top" class="Failure">
+<td><a href="Banking Project/4_Banking Project.TS10_LoadAndSecurityTesting.html">Banking Project.TS10_LoadAndSecurityTesting</a></td><td><a name="getBank TestCase"></a><a href="Banking Project/4_Banking Project.TS10_LoadAndSecurityTesting.html#getBank TestCase">getBank TestCase</a></td><td>Failure</td><td>The test run was cancelled due to a failed test step.<br>
+<br>
+<code><h3><b>getBank Failed</b></h3><pre>org.apache.http.conn.HttpHostConnectException: Connect to Okles-PC:8088 [Okles-PC/192.168.0.13, Okles-PC/fe80:0:0:0:8075:4bcf:f58f:2b05%6] failed: Connection refused: connect<br/></pre><hr/></code></td><td>2.006</td>
+</tr>
+<tr valign="top" class="Failure">
+<td><a href="Banking Project/8_Banking Project.TS04_supplierService.html">Banking Project.TS04_supplierService</a></td><td><a name="TS01_getSupplierByZipCode"></a><a href="Banking Project/8_Banking Project.TS04_supplierService.html#TS01_getSupplierByZipCode">TS01_getSupplierByZipCode</a></td><td>Failure</td><td>The test run was cancelled due to a failed test step.<br>
+<br>
+<code><h3><b>GetSupplierByZipCode - Request 1 Failed</b></h3><pre>[SOAP Response] error: Unexpected element: CDATA<br/>[SOAP Response] Unexpected element: CDATA<br/>[countOfSuppliersOutsideZipCode75070] The XPathContains assertion failed for the following path: [declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';<br/>declare namespace ns1='http://www.webservicex.net/';<br/>count(//ns1:GetSupplierByZipCodeResponse/ns1:SupplierDataLists/ns1:SupplierDatas/ns1:SupplierData[ns1:ZipPlus4!='75070'])]. Class name: XmlException; Error Message: java.lang.NullPointerException.<br/>[Schema Compliance] error: Unexpected element: CDATA<br/>[Schema Compliance] Unexpected element: CDATA<br/>[zipCodesListing] XQuery Match Assertion failed for path [declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';<br/>declare namespace ns1='http://www.webservicex.net/';<br/><zipcodes><br/>{<br/>for $supplier in //ns1:SupplierData<br/>return <zip>{ data($supplier/ns1:ZipPlus4/text())}</zip><br/>}<br/></zipcodes>] : XmlException:java.lang.NullPointerException<br/>[supplierNoListing] XQuery Match Assertion failed for path [declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';<br/>declare namespace ns1='http://www.webservicex.net/';<br/><suppliers><br/>{<br/>for $supplier in //ns1:SupplierData<br/>return <supplier><br/><supplierNo>{data($supplier/ns1:SupplierNumber/text())}</supplierNo><br/><city>{data($supplier/ns1:City/text())}</city><br/></supplier><br/>}<br/></suppliers>] : XmlException:java.lang.NullPointerException<br/></pre><hr/></code></td><td>0.102</td>
+</tr>
+<tr valign="top" class="Failure">
+<td><a href="Banking Project/11_Banking Project.TS11_DataSources.html">Banking Project.TS11_DataSources</a></td><td><a name="TC3_WorkingWithDatabase"></a><a href="Banking Project/11_Banking Project.TS11_DataSources.html#TC3_WorkingWithDatabase">TC3_WorkingWithDatabase</a></td><td>Failure</td><td>java.lang.Exception: Failed to prepare the test step [DataSource - MySQL]; com.eviware.soapui.support.SoapUIException: Failed to initialize the connection that uses the [com.mysql.jdbc.Driver] driver. Connection string:  [jdbc:mysql://localhost:3306/demo?user=admin&amp;password=#####].<br>
+<br>
+<code></code></td><td>0.005</td>
+</tr>
+</table>
+</body>
+</html>
